@@ -77,6 +77,7 @@ Version for deploy. If not set version argument, increment automaticaly the patc
 Directories
 -----------
 
+```python
 Root
   |
   |-> Demo. *Containt source code for your examples*
@@ -84,3 +85,4 @@ Root
   |-> Scripts. *Containt utilities for install and deploy*
   |
   |-> Sources. *Source code of the your pod* 
+```
