@@ -26,7 +26,7 @@ Pod name.
 Initial version of the pod. Default value is "1.0.0"
 
 ```shell
-./Scripts/deploy.sh -v "0.1.0"
+./Scripts/install.sh -v "0.1.0"
 ```
 
 
