@@ -11,6 +11,12 @@ import UIKit
 public class BasePod: NSObject
 {
 
-    // code
+    public class func helloPod(controller: UIViewController)
+    {
+        let alert = UIAlertController(title: "BasePod demo class function", message: "Hello Pod", preferredStyle: UIAlertControllerStyle.Alert)
+
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        controller.presentViewController(alert, animated: true, completion: nil)
+    }
 
 }

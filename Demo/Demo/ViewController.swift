@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BasePod
 
 class ViewController: UIViewController {
 
@@ -18,6 +19,21 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(3 * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(),
+            {
+                BasePod.helloPod(self)
+            }
+        )
     }
 
 

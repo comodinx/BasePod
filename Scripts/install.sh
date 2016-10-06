@@ -70,7 +70,9 @@ fi
 ### Source function
 edebug "Installing $podname v$podversion"
 
+##############
 ###### Podspec
+##############
 filePodspec="$podname.podspec"
 edebug "Prepare podspec file $filePodspec"
 
@@ -78,52 +80,72 @@ mv BasePod.podspec "$filePodspec"
 sudo sed -i $extbkp "s/BasePodVersion/$podversion/g" "$REPO/$filePodspec"
 sudo sed -i $extbkp "s/BasePod/$podname/g" "$REPO/$filePodspec"
 
+##############
 ###### Sources
+##############
 fileSource="Sources/$podname.swift"
 edebug "Prepare source file $fileSource"
 
 mv Sources/BasePod.swift "$fileSource"
 sudo sed -i $extbkp "s/BasePod/$podname/g" "$REPO/$fileSource"
 
+################
 ###### README.md
+################
 edebug "Prepare README.md file"
 
 mv README.md "INSTRUCTIONS.md"
 mv BasePodREADME.md "README.md"
 sudo sed -i $extbkp "s/BasePod/$podname/g" "$REPO/README.md"
 
-###### Demo Podfile
-edebug "Prepare demo podfile"
+###########
+###### Demo
+###########
+edebug "Prepare demo"
 
 sudo sed -i $extbkp "s/BasePod/$podname/g" "$REPO/Demo/Podfile"
+sudo sed -i $extbkp "s/BasePod/$podname/g" "$REPO/Demo/Demo/ViewController.swift"
 
-###### Clean backups
-edebug "Clean directory"
+################################
+###### Install demo dependencies
+################################
+edebug "Install demo dependencies"
 
-if [ -f "$REPO/$filePodspec$extbkp" ]
-then 
-    rm -f "$REPO/$filePodspec$extbkp"
-fi
-
-if [ -f "$REPO/$fileSource$extbkp" ]
-then 
-    rm -f "$REPO/$fileSource$extbkp"
-fi
-
-if [ -f "$REPO/README.md$extbkp" ]
-then 
-    rm -f "$REPO/README.md$extbkp"
-fi
-
-if [ -f "$REPO/Demo/Podfile$extbkp" ]
-then 
-    rm -f "$REPO/Demo/Podfile$extbkp"
-fi
-
-###### Install dependencies
-edebug "Install dependencies"
 cd "$REPO/Demo"
 pod install
-cd ..
+
+####################
+###### Clean backups
+####################
+edebug "Clean directory"
+
+cd "$REPO"
+
+rm -rf .git/
+
+if [ -f "$filePodspec$extbkp" ]
+then 
+    rm -f "$filePodspec$extbkp"
+fi
+
+if [ -f "$fileSource$extbkp" ]
+then 
+    rm -f "$fileSource$extbkp"
+fi
+
+if [ -f "README.md$extbkp" ]
+then 
+    rm -f "README.md$extbkp"
+fi
+
+if [ -f "Demo/Podfile$extbkp" ]
+then 
+    rm -f "Demo/Podfile$extbkp"
+fi
+
+if [ -f "Demo/Demo/ViewController.swift$extbkp" ]
+then
+    rm -f "Demo/Demo/ViewController.swift$extbkp"
+fi
 
 edebug "Install OK"
