@@ -30,7 +30,7 @@ Initial version of the pod. Default value is "1.0.0"
 ```
 
 
-Deploying
+Deploying (TODO)
 ---------
 
 ```shell
