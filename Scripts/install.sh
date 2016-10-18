@@ -29,7 +29,7 @@ source "${SCRIPTS}/helpers.sh"
 while getopts ":n:v:h" opt; do
     case "${opt}" in
         n)  podname=$OPTARG;;
-        b)  podversion=$OPTARG;;
+        v)  podversion=$OPTARG;;
         h)  help=true;;
     esac
 done
@@ -38,20 +38,20 @@ done
 ### Check arguments
 if [ "$help" != false ]
 then
-    etrace "./Scripts/install.sh -n \"MyPodName\" -v \"1.0.0\""
+    ehelp "./Scripts/install.sh -n \"MyPodName\" -v \"1.0.0\""
     exit 0
 fi
 
 if [ -z "${podname}" ]
 then
-    ewarn "Please set a pod name with \"-n\" argument"
+    ewarn "Please set a POD name with \"-n\" argument"
     exit 1
 fi
 
 if [ -z "${podversion}" ]
 then
     podversion='1.0.0'
-    ewarn "Not pod version specified, the default version is $podversion. For set version use \"-v\" argument"
+    ewarn "Not POD version specified, the default version is $podversion. For set version use \"-v\" argument"
 fi
 
 cd $REPO;
